@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+       java: corretto11
+    commands:
+       $(aws ecr get-login --no-include-email --region us-east-1)
+      
+  build:
+    commands:
+      - docker build -t ram-webserverrepo:pipeimgversion1 .
+      - docker tag ram-webserverrepo:pipeimgversion1 412253940178.dkr.ecr.us-east-1.amazonaws.com/ram-webserverrepo:pipeimgversion1
+      
+  post_build:
+    commands:
+      docker push 412253940178.dkr.ecr.us-east-1.amazonaws.com/ram-webserverrepo:pipeimgversion1
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
